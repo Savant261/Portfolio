@@ -37,7 +37,7 @@ const certifications = [
   },
   {
     title: 'Building Autonomous AI Agents',
-    issuer: 'DeepLearning.AI Placeholder',
+    issuer: 'IBM SkillsBuild',
     desc: 'Understanding multi-agent workflows, long term memory utilization, tool calling, and deterministic JSON structural reasoning for LLMs.',
     link: 'https://drive.google.com/file/d/1CYaegcRRKwV9gWzUf9tV2zCAjOTSS7jd/view',
     year: '2025',
@@ -47,16 +47,16 @@ const certifications = [
 
 export default function CertificationsSection() {
   const containerRef = useRef<HTMLElement>(null)
-  
+
   useEffect(() => {
     if (!containerRef.current) return
     const ctx = gsap.context(() => {
       // CURTAIN_REVEAL
       gsap.fromTo('.cert-heading',
         { clipPath: 'inset(100% 0 0 0)' },
-        { 
-          clipPath: 'inset(0% 0 0 0)', 
-          duration: 1.2, 
+        {
+          clipPath: 'inset(0% 0 0 0)',
+          duration: 1.2,
           ease: 'power4.out',
           scrollTrigger: {
             trigger: containerRef.current,
@@ -99,41 +99,41 @@ export default function CertificationsSection() {
       <div className="flex flex-col gap-8 w-full">
         {certifications.map((cert, i) => (
           <div key={i} className="cert-banner w-full flex flex-col md:flex-row bg-[#111111] border-l-[4px] border-[#ff4d00] border-t border-r border-b border-white/5 overflow-hidden hover:bg-[#151515] transition-colors duration-300 group min-h-[180px]">
-             
-             {/* Left side details */}
-             <div className="flex-1 p-6 md:p-8 flex flex-col justify-center">
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4 gap-2">
-                  <h3 className="font-sans text-[22px] md:text-[24px] text-white font-medium tracking-wide leading-tight">{cert.title}</h3>
-                  <span className="font-display text-orange text-xl tracking-widest leading-none mt-1 sm:mt-0">{cert.year}</span>
-                </div>
-                
-                <span className="font-sans text-[13px] text-orange mb-4 tracking-wide uppercase font-bold">{cert.issuer}</span>
-                
-                <p className="font-sans text-[14px] text-white-dim leading-relaxed mb-6 max-w-[700px]">
-                  {cert.desc}
-                </p>
-                
-                <a href={cert.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-display text-[13px] text-white hover:text-orange transition-colors group/link w-fit tracking-widest uppercase">
-                  View Credential <ExternalLink className="w-3.5 h-3.5 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 transition-transform" />
-                </a>
-             </div>
-             
-             {/* Right side thumbnail */}
-             <div className="w-full md:w-[280px] lg:w-[320px] shrink-0 h-[200px] md:h-auto overflow-hidden bg-black relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-[#111111] via-transparent to-transparent z-10 hidden md:block" />
-                <img 
-                  src={cert.image} 
-                  alt={cert.title} 
-                  loading="lazy"
-                  className="w-full h-full object-cover grayscale opacity-80 mix-blend-luminosity group-hover:grayscale-0 group-hover:opacity-100 group-hover:mix-blend-normal transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] scale-[1.02] group-hover:scale-100" 
-                />
-             </div>
+
+            {/* Left side details */}
+            <div className="flex-1 p-6 md:p-8 flex flex-col justify-center">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4 gap-2">
+                <h3 className="font-sans text-[22px] md:text-[24px] text-white font-medium tracking-wide leading-tight">{cert.title}</h3>
+                <span className="font-display text-orange text-xl tracking-widest leading-none mt-1 sm:mt-0">{cert.year}</span>
+              </div>
+
+              <span className="font-sans text-[13px] text-orange mb-4 tracking-wide uppercase font-bold">{cert.issuer}</span>
+
+              <p className="font-sans text-[14px] text-white-dim leading-relaxed mb-6 max-w-[700px]">
+                {cert.desc}
+              </p>
+
+              <a href={cert.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-display text-[13px] text-white hover:text-orange transition-colors group/link w-fit tracking-widest uppercase">
+                View Credential <ExternalLink className="w-3.5 h-3.5 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 transition-transform" />
+              </a>
+            </div>
+
+            {/* Right side thumbnail */}
+            <div className="w-full md:w-[280px] lg:w-[320px] shrink-0 h-[200px] md:h-auto overflow-hidden bg-black relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#111111] via-transparent to-transparent z-10 hidden md:block" />
+              <img
+                src={cert.image}
+                alt={cert.title}
+                loading="lazy"
+                className="w-full h-full object-cover grayscale opacity-80 mix-blend-luminosity group-hover:grayscale-0 group-hover:opacity-100 group-hover:mix-blend-normal transition-all duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)] scale-[1.02] group-hover:scale-100"
+              />
+            </div>
           </div>
         ))}
       </div>
 
       <div className="flex justify-center mt-16">
-        <Link 
+        <Link
           to="/certifications"
           className="bg-transparent border border-orange text-orange font-display text-lg uppercase tracking-wider px-10 py-3.5 rounded hover:bg-orange hover:text-white transition-colors duration-300 flex items-center gap-2"
         >
