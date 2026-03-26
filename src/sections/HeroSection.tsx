@@ -118,7 +118,7 @@ const RedactionReveal = () => {
       setWord2Revealed(false);
 
       setTimeout(() => {
-        setCurrentIndex(prev => (prev + 1) % roles.length);
+        setCurrentIndex((prev: number) => (prev + 1) % roles.length);
       }, 500);
 
       setTimeout(() => setWord1Revealed(true), 700);
