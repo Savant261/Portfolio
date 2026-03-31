@@ -8,6 +8,7 @@ import imgData from '../assets/data.png'
 import imgSecureWork from '../assets/securework.png'
 import imgChefAssist from '../assets/chefassist.png'
 import imgNasa from '../assets/nasa.png'
+import imgKernelLens from '../assets/kernelsens.png'
 
 const projectsDatabase = [
   {
@@ -47,7 +48,7 @@ const projectsDatabase = [
     description: 'KernelLens is a real-time process monitoring dashboard that provides real-time information on running processes and system parameters, similar to a task manager. It allows users to monitor system metrics like CPU and memory usage, and terminate processes directly from the dashboard.-agent orchestration framework for autonomous business processes.',
     github: 'https://github.com/Savant261/KernelLens',
     link: '#',
-    image: 'bg-gradient-to-tr from-purple-900/80 to-blue-900/80',
+    image: imgKernelLens,
     category: 'OS'
   },
   {
@@ -101,7 +102,7 @@ export default function ProjectsPage() {
       </button>
 
       <h1 className="font-display text-white text-[clamp(48px,8vw,80px)] leading-[0.9] mb-12 tracking-[-1px]">
-        MY RECENT <span className="text-orange">WORK</span>
+        ALL MY <span className="text-orange">PROJECTS</span>
       </h1>
 
       {/* Filters */}

@@ -12,7 +12,7 @@ const education = [
     desc: 'Relevant Coursework: Machine Learning, Data Structures & Algorithms, Statistics, Database Management Systems',
   },
   {
-    year: 'Apr 2020 - Mar 2022',
+    year: 'Apr 2021 - Mar 2022',
     title: 'Modern Public School',
     subtitle: 'Intermediate (Class XII) | Percentage: 92%',
     desc: 'Balasore, Odisha',
