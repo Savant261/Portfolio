@@ -80,13 +80,24 @@ export default function AboutSection() {
 
         {/* Top Section: Bio & Grid */}
         <div className="flex flex-col xl:flex-row gap-16 xl:gap-12 mb-20 lg:mb-24 bio-reveal">
-          <div className="w-full xl:w-[45%] flex flex-col justify-center">
-            <p className="font-sans text-[16px] text-white-dim leading-relaxed max-w-[500px]">
-              I'm Savant Kumar Jena, a full-stack developer and aspiring ML engineer building systems that are not just functional, but intelligent. I thrive at the intersection of software engineering and artificial intelligence — turning complex problems into elegant solutions.
+          <div className="w-full xl:w-[55%] flex flex-col justify-center space-y-6">
+            <p className="font-sans text-[16px] text-white-dim leading-relaxed max-w-[600px]">
+              Let's be honest — I didn't choose computer science. Computer science chose me, and honestly, it could've given me more warning.
+              My earliest relationship with computers was purely transactional. I gave it electricity, it gave me Road Rash. Nobody told me there was an entire universe of logic, syntax, and sleep deprivation hiding behind that screen.
+            </p>
+            <p className="font-sans text-[16px] text-white-dim leading-relaxed max-w-[600px]">
+              Fast forward through one very consequential entrance exam — B.Tech, CSE. What followed was a masterclass in humbling experiences. I met Python before I met my college friends. I learned what a merge conflict was at 2 AM before I learned what healthy sleep was. I built apps nobody asked for, in languages I barely understood — and embarrassingly often, they worked.
+              The graveyard of abandoned repositories tells its own story. Projects dropped like hot potatoes the moment complexity outpaced confidence. But here's the thing about curiosity — it doesn't respect your frustration. It just keeps pulling you back in, whispering "but what if you tried this." And every single time, I found my way through the mess I'd made myself. Not gracefully. Not efficiently. But I found it.
+            </p>
+            <p className="font-sans text-[16px] text-white-dim leading-relaxed max-w-[600px]">
+              Today I sit at the <span className="text-white font-medium">intersection of full-stack development and machine learning</span> — building things end-to-end, from the React component a user touches to the TensorFlow model making decisions underneath it. I've shipped production-ready applications, engineered ML pipelines, and survived enough merge conflicts to have opinions about git branching strategies.
+            </p>
+            <p className="font-sans text-[16px] text-white-dim leading-relaxed max-w-[600px]">
+              I'm not the developer who knows everything. <span className="text-orange font-medium">I'm the developer who figures everything out</span> — and there's a meaningful difference between those two things.
             </p>
           </div>
         
-        <div className="w-full xl:w-[55%]">
+        <div className="w-full xl:w-[45%] flex items-center">
           <div className="grid grid-cols-2">
             <div className="border-b border-r border-white/10 pb-6 pr-6 flex flex-col gap-1.5">
               <span className="font-sans text-[11px] text-white-dim uppercase tracking-[2px]">Name</span>

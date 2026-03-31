@@ -8,7 +8,6 @@ const BOOT_LINES = [
   "> CONNECTING TO NEURAL INTERFACE...",
   "> MODULES LOADED: react · three.js · gsap · tensorflow",
   "> CALIBRATING PORTFOLIO ENGINE...",
-  "> STATUS: FULL-STACK · ML/AI · BACKEND · COMPETITIVE",
   "> SYSTEM READY. WELCOME."
 ]
 
@@ -32,7 +31,7 @@ export default function BootSequence() {
         clipPath: 'inset(0% 0% 100% 0%)',
         duration: 0.7,
         ease: 'power3.inOut',
-        delay: 0.8
+        delay: 0.4
       })
       return
     }
@@ -43,7 +42,7 @@ export default function BootSequence() {
       // Typing current line
       const timer = setTimeout(() => {
         setCurrentCharIndex(prev => prev + 1)
-      }, 30) // 30ms per char
+      }, 15) // 15ms per char
       return () => clearTimeout(timer)
     } else {
       // Line finished, pause then next line
@@ -51,7 +50,7 @@ export default function BootSequence() {
         setDisplayedLines(prev => [...prev, currentFullLine])
         setCurrentLineIndex(prev => prev + 1)
         setCurrentCharIndex(0)
-      }, 200) // 200ms pause
+      }, 80) // 80ms pause
       return () => clearTimeout(timer)
     }
   }, [currentLineIndex, currentCharIndex, navigate])

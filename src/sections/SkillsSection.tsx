@@ -67,42 +67,98 @@ export default function SkillsSection() {
   useEffect(() => {
     if (!containerRef.current) return
     const ctx = gsap.context(() => {
-      // Card entrance stagger
-      gsap.fromTo('.skill-card',
+      // 1. Epic Header Reveal
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.skills-section',
+          start: 'top 75%',
+          toggleActions: 'restart none none reverse'
+        }
+      });
+
+      tl.fromTo('.skills-subtitle',
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }
+      )
+      .fromTo('.skills-word',
+        { opacity: 0, y: 40, rotation: 5 },
+        { opacity: 1, y: 0, rotation: 0, duration: 0.8, stagger: 0.1, ease: 'back.out(1.2)' },
+        "-=0.4"
+      )
+      .fromTo('.skills-desc',
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' },
+        "-=0.5"
+      );
+
+      // 2. 3D Card Entrance & Dynamic Tilt Hover
+      const cards = gsap.utils.toArray('.skill-card');
+      gsap.fromTo(cards,
         {
           opacity: 0,
-          y: 50,
-          rotation: 1,
+          y: 120,
+          rotationX: 45,
+          rotationY: -15,
+          z: -300,
+          scale: 0.8,
+          transformPerspective: 1000,
         },
         {
           opacity: 1,
           y: 0,
-          rotation: 0,
-          duration: 0.8,
-          ease: 'expo.out',
-          stagger: {
-            amount: 0.5,
-            from: 'start'
-          },
+          rotationX: 0,
+          rotationY: 0,
+          z: 0,
+          scale: 1,
+          duration: 1.4,
+          ease: 'power4.out',
+          stagger: 0.12,
           scrollTrigger: {
-            trigger: '.skills-section',
-            start: 'top 70%',
+            trigger: '.skills-grid',
+            start: 'top 85%',
+          },
+          onComplete: () => {
+             // Attach 3D tilt hover listeners
+             cards.forEach((card: any) => {
+                card.addEventListener('mousemove', (e: MouseEvent) => {
+                  const rect = card.getBoundingClientRect();
+                  const x = e.clientX - rect.left - rect.width / 2;
+                  const y = e.clientY - rect.top - rect.height / 2;
+                  
+                  gsap.to(card, {
+                    rotationY: 15 * (x / (rect.width / 2)),
+                    rotationX: -15 * (y / (rect.height / 2)),
+                    transformPerspective: 1000,
+                    ease: 'power2.out',
+                    duration: 0.4
+                  });
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                  gsap.to(card, {
+                    rotationY: 0,
+                    rotationX: 0,
+                    ease: 'elastic.out(1, 0.4)',
+                    duration: 1
+                  });
+                });
+             });
           }
         }
       );
 
-      // Icon item stagger inside cards
+      // 3. Icon item stagger inside cards
       gsap.fromTo('.skill-item',
-        { opacity: 0, scale: 0.6 },
+        { opacity: 0, scale: 0.5 },
         {
           opacity: 1,
           scale: 1,
-          duration: 0.4,
-          ease: 'back.out(1.7)',
-          stagger: 0.03,
+          duration: 0.5,
+          ease: 'back.out(1.5)',
+          stagger: 0.02,
           scrollTrigger: {
-            trigger: '.skills-section',
-            start: 'top 65%',
+            trigger: '.skills-grid',
+            start: 'top 75%',
           }
         }
       );
@@ -143,15 +199,15 @@ export default function SkillsSection() {
           border: 1px solid rgba(255,255,255,0.06);
           border-radius: 12px;
           padding: 28px;
-          transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+          transition: border-color 0.4s ease, box-shadow 0.4s ease;
           position: relative;
           overflow: hidden;
+          transform-style: preserve-3d;
         }
 
         .skill-card:hover {
-          transform: translateY(-6px);
-          border-color: rgba(255, 77, 0, 0.25);
-          box-shadow: 0 20px 50px rgba(255, 77, 0, 0.1);
+          border-color: rgba(255, 77, 0, 0.4);
+          box-shadow: 0 30px 60px rgba(255, 77, 0, 0.15);
         }
 
         .skill-card::before {
@@ -204,16 +260,20 @@ export default function SkillsSection() {
       `}</style>
       
       {/* Header */}
-      <div className="flex flex-col mb-[60px] w-full items-start">
-        <div className="text-orange font-sans text-[11px] uppercase tracking-[3px] mb-4">
-          07 — SKILLS
+      <div className="flex flex-col mb-[60px] w-full items-start" style={{ perspective: '1000px' }}>
+        <div className="text-orange font-sans text-[11px] uppercase tracking-[3px] mb-4 overflow-hidden">
+          <span className="skills-subtitle inline-block">07 — SKILLS</span>
         </div>
-        <h2 className="font-display text-white text-[clamp(44px,7vw,70px)] leading-[1] tracking-[1px] mb-6">
-          SKILLS & <span className="text-orange">TECHNOLOGIES</span>
+        <h2 className="font-display text-white text-[clamp(44px,7vw,70px)] leading-[1] tracking-[1px] mb-6 flex flex-wrap gap-x-4">
+          <span className="overflow-hidden inline-block py-2"><span className="skills-word inline-block">SKILLS</span></span>
+          <span className="overflow-hidden inline-block py-2"><span className="skills-word inline-block">&</span></span>
+          <span className="overflow-hidden inline-block py-2"><span className="skills-word inline-block text-orange">TECHNOLOGIES</span></span>
         </h2>
-        <p className="font-sans text-[#a0a0a0] text-[15px] max-w-[600px] leading-relaxed">
-          Every tool, language, and framework I've used to build real things.
-        </p>
+        <div className="overflow-hidden max-w-[600px]">
+          <p className="skills-desc font-sans text-[#a0a0a0] text-[15px] leading-relaxed">
+            Every tool, language, and framework I've used to build real things.
+          </p>
+        </div>
       </div>
 
       {/* Grid */}
